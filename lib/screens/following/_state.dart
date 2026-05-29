@@ -1,14 +1,20 @@
-part of 'faq.dart';
+part of 'following.dart';
 
 class _ScreenState extends ChangeNotifier {
-  final Set<int> expandedIndices = {};
+  String _query = '';
 
-  void onTileToggled(int index) {
-    if (expandedIndices.contains(index)) {
-      expandedIndices.remove(index);
-    } else {
-      expandedIndices.add(index);
-    }
+  List<Following> get following => _query.isEmpty
+      ? kFollowings
+      : kFollowings
+          .where(
+            (f) =>
+                f.name.toLowerCase().contains(_query.toLowerCase()) ||
+                f.username.toLowerCase().contains(_query.toLowerCase()),
+          )
+          .toList();
+
+  void onSearch(String? val) {
+    _query = val ?? '';
     notifyListeners();
   }
 }

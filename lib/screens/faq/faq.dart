@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 part '_state.dart';
 part 'widget/_body.dart';
 part 'data.dart';
+part 'widget/faq_card.dart';
 
 class FaqScreen extends StatelessWidget {
   const FaqScreen({super.key});

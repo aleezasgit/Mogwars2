@@ -1,8 +1,15 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:mogwars/router/routes.dart';
 import 'package:mogwars/screens/faq/faq.dart';
+import 'package:mogwars/screens/followers/followers.dart';
+import 'package:mogwars/screens/following/following.dart';
+import 'package:mogwars/screens/profile/profile.dart';
+import 'package:mogwars/screens/rewards/rewards.dart';
 
 import 'package:mogwars/screens/splash/splash.dart';
+import 'package:mogwars/screens/subscription/subscription.dart';
 import 'package:mogwars/screens/support/support.dart';
 import 'package:mogwars/screens/testing.dart';
 
@@ -13,6 +20,11 @@ final Map<String, Widget Function(dynamic)> appRoutes = {
   AppRoutes.testing: (_) => const TestValidationScreen(),
   AppRoutes.faq: (_) => const FaqScreen(),
   AppRoutes.support: (_) => const SupportScreen(),
+  AppRoutes.follower: (_) => const FollowersScreen(),
+  AppRoutes.profile: (_) => const ProfileScreen(),
+ AppRoutes.following: (_) => const FollowingScreen(),
+  AppRoutes.rewards: (_) => const RewardsScreen(), 
+  AppRoutes.subscription: (_) => const SubscriptionScreen(), 
 };
 
 void navigateToScreen(BuildContext context, Widget screen) {

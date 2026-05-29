@@ -3,9 +3,9 @@ part of 'followers.dart';
 class _ScreenState extends ChangeNotifier {
   String _query = '';
 
-  List<_Follower> get followers => _query.isEmpty
-      ? _kFollowers
-      : _kFollowers
+  List<Follower> get followers => _query.isEmpty
+      ? kFollowers
+      : kFollowers
           .where(
             (f) =>
                 f.name.toLowerCase().contains(_query.toLowerCase()) ||

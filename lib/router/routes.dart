@@ -10,4 +10,9 @@ abstract class AppRoutes {
   static const testing = '/testing';
   static const faq = '/faq';
   static const support = '/support';
+  static const follower = '/follower';
+  static const profile = '/profile';
+  static const following = '/following';
+  static const rewards = '/rewards';
+  static const subscription = '/subscription';
 }

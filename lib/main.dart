@@ -52,7 +52,8 @@ class _MyAppState extends State<MyApp> {
         navigatorKey: navigatorKey,
         navigatorObservers: [...observers, NavigationHistoryObserver()],
         theme: theme.themeDark,
-        initialRoute: AppRoutes.support,
+        initialRoute: AppRoutes.profile,
+        
         builder: (context, child) {
           theme.App.init(context);
           return child!;
