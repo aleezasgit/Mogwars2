@@ -212,7 +212,9 @@ class _Body extends StatelessWidget {
                   // ── Delete Account ────────────────────────────────────
                   AppButton(
                     label: 'Delete Account',
-                    onPressed: () {},
+                    onPressed: () {
+                      DeleteBottomSheet.show(context);
+                    },
                     buttonType: ButtonType.outlined,
                     iconPath: "assets/svgs/Simplification.svg",
                     iconColor: AppTheme.c.text.shade100,
@@ -224,7 +226,9 @@ class _Body extends StatelessWidget {
                   // ── Logout ────────────────────────────────────────────
                   AppButton(
                     label: 'Logout',
-                    onPressed: () {},
+                    onPressed: () {
+                      LogoutBottomSheet.show(context);
+                    },
                     backgroundColor: AppTheme.c.primary.main,
                     iconPath: "assets/svgs/Simplification.svg",
                     iconColor: AppTheme.c.white,
