@@ -19,7 +19,7 @@ class _Body extends StatelessWidget {
           children: [
 
             // ── Hero section (bg image + avatar + top actions) ───────────
-            _HeroSection(),
+            HeroSection(),
 
             // ── Body content ─────────────────────────────────────────────
             Padding(
@@ -109,7 +109,7 @@ class _Body extends StatelessWidget {
                   Space.yf(20),
 
                   // ── Stats row ─────────────────────────────────────────
-                  _StatsRow(),
+                  StatsRow(),
 
                   Space.yf(20),
 
@@ -198,8 +198,8 @@ class _Body extends StatelessWidget {
                     crossAxisSpacing: 12.w,
                     mainAxisSpacing: 12.h,
                     childAspectRatio: 2.6,
-                    children: _menuItems.map((item) {
-                      return _MenuTile(
+                    children: menuItems.map((item) {
+                      return MenuTile(
                         iconPath: item['icon']!,
                         label: item['label']!,
                         onTap: () {},
@@ -250,8 +250,8 @@ class _Body extends StatelessWidget {
 // Hero Section
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _HeroSection extends StatelessWidget {
-  const _HeroSection();
+class HeroSection extends StatelessWidget {
+  const HeroSection();
 
   @override
   Widget build(BuildContext context) {
@@ -422,8 +422,8 @@ class _HeroSection extends StatelessWidget {
 // Stats Row
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _StatsRow extends StatelessWidget {
-  const _StatsRow();
+class StatsRow extends StatelessWidget {
+  const StatsRow();
 
   @override
   Widget build(BuildContext context) {
@@ -432,23 +432,23 @@ class _StatsRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        _StatItem(label: 'Global Rank', value: '#15'),
-        _StatDivider(),
-        _StatItem(label: 'Followers', value: '5,450'),
-        _StatDivider(),
-        _StatItem(label: 'Following', value: '4,890'),
-        _StatDivider(),
-        _StatItem(label: 'Local Rank', value: '#12'),
+        StatItem(label: 'Global Rank', value: '#15'),
+        StatDivider(),
+        StatItem(label: 'Followers', value: '5,450'),
+        StatDivider(),
+        StatItem(label: 'Following', value: '4,890'),
+        StatDivider(),
+        StatItem(label: 'Local Rank', value: '#12'),
       ],
     );
   }
 }
 
-class _StatItem extends StatelessWidget {
+class StatItem extends StatelessWidget {
   final String label;
   final String value;
 
-  const _StatItem({required this.label, required this.value});
+  const StatItem({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -462,8 +462,8 @@ class _StatItem extends StatelessWidget {
   }
 }
 
-class _StatDivider extends StatelessWidget {
-  const _StatDivider();
+class StatDivider extends StatelessWidget {
+  const StatDivider();
 
   @override
   Widget build(BuildContext context) {
@@ -479,12 +479,12 @@ class _StatDivider extends StatelessWidget {
 // Menu Tile
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _MenuTile extends StatelessWidget {
+class MenuTile extends StatelessWidget {
   final String iconPath;
   final String label;
   final VoidCallback onTap;
 
-  const _MenuTile({
+  const MenuTile({
     required this.iconPath,
     required this.label,
     required this.onTap,
@@ -497,10 +497,10 @@ class _MenuTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: Space.all(14, 10),
+        padding: Space.all(12),
         decoration: BoxDecoration(
           color: AppTheme.c.background.shade100,
-          borderRadius: BorderRadius.circular(14.r),
+          borderRadius: BorderRadius.circular(16.r),
           border: Border.all(
             color: AppTheme.c.lightGrey.main!,
             width: 1.w,
