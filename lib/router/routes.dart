@@ -15,4 +15,6 @@ abstract class AppRoutes {
   static const following = '/following';
   static const rewards = '/rewards';
   static const subscription = '/subscription';
+  static const editProfile = '/edit-profile';
+  static const securitySettings = '/security-settings';
 }
