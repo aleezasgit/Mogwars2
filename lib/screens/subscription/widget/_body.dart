@@ -11,66 +11,45 @@ class _Body extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.c.background.main,
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: Space.all(8),
-          child: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: Container(
-              decoration: BoxDecoration(
-                color: AppTheme.c.background.shade100!.withValues(alpha: 0.5),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.arrow_back,
-                color: AppTheme.c.text.shade100,
-                size: 20.w,
-              ),
-            ),
-          ),
-        ),
-        title: Text(
-          'Subscription',
-          style: AppText.h6b!.cl(AppTheme.c.text.shade800!),
-        ),
-        centerTitle: true,
+      appBar: CustomAppBar(
+        title: 'Subscription',
+        type: AppBarType.withTextCenter,
       ),
       body: Stack(
         children: [
           // ── Scrollable Layout Content ──────────────────────────────────────
           SingleChildScrollView(
             padding: EdgeInsets.only(
-              bottom: 120.h, // Space for the floating CTA container
+              top: UI.padding!.top + 20.h,
+              bottom: 140.h,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: UI.padding!.top + 55.h),
+                Space.yf(40),
 
                 // ── Brand Header Logotype ────────────────────────────────────
                 Padding(
-                  padding: Space.hf(20),
+                  padding: Space.hf(16),
                   child: Row(
                     children: [
                       Text(
                         'Mog',
-                        style: AppText.h3b!.cl(AppTheme.c.text.shade800!),
+                        style: AppText.h3b!.cl(AppTheme.c.white!),
                       ),
                       Text(
                         'Pro',
                         style: AppText.h3b!.cl(AppTheme.c.primary.main!),
                       ),
-                      Space.xf(6),
+                      Space.xf(4),
                       Container(
                         padding: Space.all(4),
                         decoration: BoxDecoration(
-                          color: AppTheme.c.primaryGradient.endColor,
+                          gradient: UIProps.diamondBlue,
                           shape: BoxShape.circle,
                         ),
                         child: SvgPicture.asset(
-                          "assets/svgs/crown.svg",
+                          "assets/svgs/Vector.svg",
                           width: 12.w,
                           height: 12.w,
                           colorFilter: ColorFilter.mode(AppTheme.c.white!, BlendMode.srcIn),
@@ -141,9 +120,9 @@ class _Body extends StatelessWidget {
 
                 Space.yf(12),
 
-                // ── Free vs Premium Header Labels ────────────────────────────
+                // ── Free Column Header Label ─────────────────────────────────
                 Padding(
-                  padding: Space.only(left: 20, right: 28, top: 10),
+                  padding: Space.only(left: 20, right: 78, top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -151,41 +130,23 @@ class _Body extends StatelessWidget {
                         'Free',
                         style: AppText.b2bm!.cl(AppTheme.c.text.shade200!),
                       ),
-                      Space.xf(32),
-                      Container(
-                        padding: Space.all(4),
-                        decoration: BoxDecoration(
-                          color: AppTheme.c.primaryGradient.endColor,
-                          shape: BoxShape.circle,
-                        ),
-                        child: SvgPicture.asset(
-                          "assets/svgs/crown.svg",
-                          width: 10.w,
-                          height: 10.w,
-                          colorFilter: ColorFilter.mode(AppTheme.c.white!, BlendMode.srcIn),
-                          placeholderBuilder: (_) => Icon(Icons.star, size: 10.w, color: AppTheme.c.white),
-                        ),
-                      ),
                     ],
                   ),
                 ),
 
                 Space.yf(8),
 
-                // ── Combined Features & Matrix Column Layout ──────────────────
+                // ── Combined Matrix Comparison Structure Layout ──────────────
                 Padding(
                   padding: Space.only(left: 20, right: 16),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Left Column: Feature Titles and Icons
+                      // 1. Left Column: Feature Icons & Description Texts
                       Expanded(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemCount: _kPremiumFeatures.length,
-                          itemBuilder: (context, index) {
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(_kPremiumFeatures.length, (index) {
                             final feature = _kPremiumFeatures[index];
                             final double fadeStep = (index / _kPremiumFeatures.length);
                             final double currentOpacity = (1.0 - (fadeStep * 0.65)).clamp(0.15, 1.0);
@@ -214,7 +175,6 @@ class _Body extends StatelessWidget {
                                     Space.xf(12),
                                     Expanded(
                                       child: Column(
-                                       
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
@@ -238,15 +198,51 @@ class _Body extends StatelessWidget {
                                 ),
                               ),
                             );
-                          },
+                          }),
                         ),
                       ),
 
                       Space.xf(8),
 
-                      // Right Column: The strictly bounded vertical Container track
+                      // 2. Center Column: Free Status Column (Cross Icons Stack)
+                      SizedBox(
+                        width: 40.w,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: List.generate(_kPremiumFeatures.length, (index) {
+                            final double fadeStep = (index / _kPremiumFeatures.length);
+                            final double currentOpacity = (1.0 - (fadeStep * 0.65)).clamp(0.15, 1.0);
+
+                            return Opacity(
+                              opacity: currentOpacity,
+                              child: Container(
+                                height: 56.h,
+                                alignment: Alignment.center,
+                                child: SvgPicture.asset(
+                                  "assets/svgs/cross.svg",
+                                  width: 16.w,
+                                  height: 16.w,
+                                  colorFilter: ColorFilter.mode(
+                                    AppTheme.c.error.main!,
+                                    BlendMode.srcIn,
+                                  ),
+                                  placeholderBuilder: (_) => Icon(
+                                    Icons.cancel,
+                                    size: 16.w,
+                                    color: AppTheme.c.error.main,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+
+                      Space.xf(8),
+
+                      // 3. Right Column: Pro Track Container (Crown + Line + Checkboxes)
                       Container(
-                        width: 96.w,
+                        width: 54.w,
                         decoration: BoxDecoration(
                           color: AppTheme.c.background.shade100,
                           borderRadius: BorderRadius.circular(24.r),
@@ -255,81 +251,71 @@ class _Body extends StatelessWidget {
                             width: 1.w,
                           ),
                         ),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.symmetric(vertical: 4.h),
-                          itemCount: _kPremiumFeatures.length,
-                          itemBuilder: (context, index) {
-                            final feature = _kPremiumFeatures[index];
-                            final double fadeStep = (index / _kPremiumFeatures.length);
-                            final double currentOpacity = (1.0 - (fadeStep * 0.65)).clamp(0.15, 1.0);
-
-                            return Opacity(
-                              opacity: currentOpacity,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Top Crown Header Badge Element
+                            Padding(
+                              padding: Space.vf(12),
                               child: Container(
-                                height: 56.h,
-                                padding: Space.hf(12),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Free Segment Column indicator
-                                    SizedBox(
-                                      width: 28.w,
-                                      child: Center(
-                                        child: feature.isAvailableInFree
-                                            ? SvgPicture.asset(
-                                                "assets/svgs/tick.svg",
-                                                width: 14.w,
-                                                height: 14.w,
-                                                colorFilter: ColorFilter.mode(AppTheme.c.lightGrey.shade500!, BlendMode.srcIn),
-                                              )
-                                            : Text(
-                                                '-',
-                                                style: AppText.b1!.cl(AppTheme.c.lightGrey.main!),
-                                              ),
-                                      ),
-                                    ),
-
-                                    // Pro Segment Column indicator (With highlighted top capsule badge styling)
-                                    Container(
-                                      width: 32.w,
-                                      height: 32.h,
-                                      decoration: BoxDecoration(
-                                        color: index == 0
-                                            ? AppTheme.c.primaryGradient.endColor
-                                            : Colors.transparent,
-                                        borderRadius: BorderRadius.circular(10.r),
-                                      ),
-                                      child: Center(
-                                        child: SvgPicture.asset(
-                                          index == 0 ? "assets/svgs/crown.svg" : "assets/svgs/tick.svg",
-                                          width: index == 0 ? 14.w : 16.w,
-                                          height: index == 0 ? 14.w : 16.w,
-                                          colorFilter: ColorFilter.mode(
-                                            index == 0 
-                                                ? AppTheme.c.white! 
-                                                : AppTheme.c.text.shade100!.withValues(alpha: 0.9),
-                                            BlendMode.srcIn,
-                                          ),
-                                          placeholderBuilder: (_) => Icon(
-                                            index == 0 ? Icons.king_bed_rounded : Icons.check,
-                                            size: 14.w,
-                                            color: AppTheme.c.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                width: 28.w,
+                                height: 28.h,
+                                decoration: BoxDecoration(
+                                  gradient: UIProps.diamondBlue,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                ),
+                                child: Center(
+                                  child: SvgPicture.asset(
+                                    "assets/svgs/crown.svg",
+                                    width: 14.w,
+                                    height: 14.w,
+                                    colorFilter: ColorFilter.mode(AppTheme.c.white!, BlendMode.srcIn),
+                                  ),
                                 ),
                               ),
-                            );
-                          },
+                            ),
+
+                            // Track Separation Line Divider
+                            Container(
+                              height: 1.h,
+                              width: double.infinity,
+                              color: AppTheme.c.lightGrey.main!.withValues(alpha: 0.15),
+                            ),
+
+                            // Sequential layout generation for Checkbox row indices
+                            ...List.generate(_kPremiumFeatures.length, (index) {
+                              final double fadeStep = (index / _kPremiumFeatures.length);
+                              final double currentOpacity = (1.0 - (fadeStep * 0.65)).clamp(0.15, 1.0);
+
+                              return Opacity(
+                                opacity: currentOpacity,
+                                child: Container(
+                                  height: 56.h,
+                                  alignment: Alignment.center,
+                                  child: SvgPicture.asset(
+                                    "assets/svgs/tick.svg",
+                                    width: 16.w,
+                                    height: 16.w,
+                                    colorFilter: ColorFilter.mode(
+                                      AppTheme.c.text.shade100!.withValues(alpha: 0.9),
+                                      BlendMode.srcIn,
+                                    ),
+                                    placeholderBuilder: (_) => Icon(
+                                      Icons.check_circle,
+                                      size: 16.w,
+                                      color: AppTheme.c.white,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(height: 120.h),
               ],
             ),
           ),
@@ -360,7 +346,6 @@ class _Body extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppTheme.c.primary.main,
                     borderRadius: BorderRadius.circular(UIProps.radius),
-                    boxShadow: UIProps.buttonShadow,
                   ),
                   child: Center(
                     child: state.isLoading
