@@ -6,12 +6,14 @@ import 'package:mogwars/screens/edit_profile/edit_profile.dart';
 import 'package:mogwars/screens/faq/faq.dart';
 import 'package:mogwars/screens/followers/followers.dart';
 import 'package:mogwars/screens/following/following.dart';
+import 'package:mogwars/screens/manage_subscription/manage.dart';
 import 'package:mogwars/screens/profile/profile.dart';
 import 'package:mogwars/screens/rewards/rewards.dart';
 import 'package:mogwars/screens/security/security_settings.dart';
 
 import 'package:mogwars/screens/splash/splash.dart';
-import 'package:mogwars/screens/subscription/subscription.dart';
+
+import 'package:mogwars/screens/subscription2/subscription2.dart';
 import 'package:mogwars/screens/support/support.dart';
 import 'package:mogwars/screens/testing.dart';
 
@@ -26,9 +28,10 @@ final Map<String, Widget Function(dynamic)> appRoutes = {
   AppRoutes.profile: (_) => const ProfileScreen(),
   AppRoutes.following: (_) => const FollowingScreen(),
   AppRoutes.rewards: (_) => const RewardsScreen(), 
-  AppRoutes.subscription: (_) => const SubscriptionScreen(), 
+  AppRoutes.manageSubscription: (_) => const ManageSubscriptionScreen(), 
   AppRoutes.editProfile: (_) => const EditProfileScreen(),
-  AppRoutes.securitySettings: (_) => const SecuritySettingsScreen(), // Placeholder for SecuritySettingsScreen
+  AppRoutes.securitySettings: (_) => const SecuritySettingsScreen(), 
+  AppRoutes.subscription2: (_) => const Subscription2Screen(), // Placeholder for SecuritySettingsScreen
 };
 
 void navigateToScreen(BuildContext context, Widget screen) {

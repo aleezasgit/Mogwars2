@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mogwars/configs/configs.dart';
-import 'package:mogwars/widgets/core/app_bar/app_bar.dart'; // Bundled or custom back appbar
+import 'package:mogwars/widgets/core/app_bar/app_bar.dart';
+import 'package:mogwars/widgets/design/buttons/app_button/app_button.dart';
 import 'package:provider/provider.dart';
+
 
 part 'widget/_body.dart';
 part '_state.dart';
 part 'data.dart';
 
-class SubscriptionScreen extends StatelessWidget {
-  const SubscriptionScreen({super.key});
+class ManageSubscriptionScreen extends StatelessWidget {
+  const ManageSubscriptionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
