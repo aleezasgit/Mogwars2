@@ -10,7 +10,7 @@ class _Body extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppTheme.c.background.main,
-      extendBodyBehindAppBar: true,
+     // extendBodyBehindAppBar: true,
       appBar: CustomAppBar(
         title: 'Subscription',
         type: AppBarType.withTextCenter,
@@ -66,26 +66,11 @@ class _Body extends StatelessWidget {
                 Space.yf(20),
 
                 // ── Horizontal preview images ────────────────────────────────
-                SizedBox(
-                  height: 100.h,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: _kPreviewImages.length,
-                    separatorBuilder: (_, __) => Container(
-                      width: 1.w,
-                      color: AppTheme.c.white!,
-                    ),
-                    itemBuilder: (context, index) {
-                      return Image.asset(
-                        _kPreviewImages[index],
-                        width: 111.w,
-                        height: 100.h,
-                        fit: BoxFit.cover,
-                      );
-                    },
+               Image.asset(
+                    'assets/pngs/Frame 2147229336.png',
+                    height: 111.h,
+                   // width: double.infinity,
                   ),
-                ),
-
                 Space.yf(24),
 
                 // ── Become A MogPro Member Header ────────────────────────────

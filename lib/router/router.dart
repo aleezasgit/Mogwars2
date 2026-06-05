@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:mogwars/router/routes.dart';
+import 'package:mogwars/screens/analytics/analytics.dart';
 import 'package:mogwars/screens/edit_profile/edit_profile.dart';
 import 'package:mogwars/screens/faq/faq.dart';
 import 'package:mogwars/screens/followers/followers.dart';
@@ -31,7 +32,8 @@ final Map<String, Widget Function(dynamic)> appRoutes = {
   AppRoutes.manageSubscription: (_) => const ManageSubscriptionScreen(), 
   AppRoutes.editProfile: (_) => const EditProfileScreen(),
   AppRoutes.securitySettings: (_) => const SecuritySettingsScreen(), 
-  AppRoutes.subscription2: (_) => const Subscription2Screen(), // Placeholder for SecuritySettingsScreen
+  AppRoutes.subscription2: (_) => const Subscription2Screen(),
+  AppRoutes.analytics: (_) => const AnalyticsScreen(),
 };
 
 void navigateToScreen(BuildContext context, Widget screen) {

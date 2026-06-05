@@ -19,4 +19,5 @@ abstract class AppRoutes {
   static const securitySettings = '/security-settings';
   static const subscription2 = '/subscription2';
   static const manageSubscription = '/managesubscription';
+  static const analytics = '/analytics';
 }
